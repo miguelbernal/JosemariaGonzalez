@@ -1,0 +1,23 @@
+/*
+selector{
+    atributo: valor;
+    atributo: valor;
+}
+*/
+body{
+    background-color: black;
+    color: white;
+}
+img{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: blueviolet;
+}
+div{
+    height: 50px;
+    background-color: cornflowerblue;
+}
+h1{
+    color: red;
+}
