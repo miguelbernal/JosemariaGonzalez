@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+    <h1>Formularios</h1>
+    <form>
+        <fieldset>
+            <legend>Datos personales</legend>
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+            <div>
+                <label for="clave">Contraseña</label>
+                <input type="password" name="clave" id="clave">
+            </div>
+            <div>
+                <label for="nacimiento">Fecha de nacimiento</label>
+                <input type="date" name="nacimiento" id="nacimiento">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Preferencias</legend>
+            <div>
+                <label for="color">Color favorito</label>
+                <input type="color" name="color" id="color">
+            </div>
+            <div>
+                <label for="ingles">Nivel ingles</label>
+                <input type="range" name="ingles" id="ingles">
+            </div>
+        </fieldset>
+        <input type="button" value="Boton input">
+        <button type="submit">Enviar datos al Servidor</button>
+        <button type="button">Boton type button</button>
+        <button type="reset">Boton type reset</button>
+    </form>
+</body>
+</html>
