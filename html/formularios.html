@@ -35,6 +35,34 @@
                 <input type="range" name="ingles" id="ingles">
             </div>
         </fieldset>
+        <fieldset>
+            <legend>Otras etiquetas</legend>
+            <input type="file" name="archivo" id="archivo">
+            <input type="hidden" name="oculto" id="oculto">
+            <select name="pais" id="pais">
+                <option value="py">Paraguay</option>
+                <option value="ar">Argentina</option>
+                <option value="br">Brazil</option>
+            </select>
+            <fieldset>
+                <legend>Sexo</legend>
+                <input type="radio" name="sexo" id="masculino">
+                <label for="masculino">Masculino</label>
+                <input type="radio" name="sexo" id="femenino">
+                <label for="femenino">Femenino</label>
+            </fieldset>
+            <fieldset>
+                <legend>Estudios</legend>
+                <input type="checkbox" name="primarios" id="primarios">
+                <label for="primarios">Primarios</label>
+                <input type="checkbox" name="secundarios" id="secundarios">
+                <label for="secundarios">Secundarios</label>
+                <input type="checkbox" name="univesitarios" id="universitarios">
+                <label for="universitarios">Universitarios</label>
+            </fieldset>
+            <textarea name="observaciones" id="observaciones" cols="45" rows="5" placeholder="Escriba sus observaciones ..."></textarea>
+            <textarea name="comentarios" id="comentarios" cols="45" rows="5" placeholder="Escriba sus comentarios ..."></textarea>
+        </fieldset>
         <input type="button" value="Boton input">
         <button type="submit">Enviar datos al Servidor</button>
         <button type="button">Boton type button</button>
