@@ -1,0 +1,39 @@
+/*
+selector {
+    atributo1: valor1;
+    atributo2: valor2;
+    .          .
+}
+*/
+body{
+    margin: 0;
+}
+.panelLogin{
+    width: 350px;
+    background-color: #00ff00;
+    /*border: 5px blue solid;*/
+    margin: 1px;
+    padding: 5px;
+}
+.logo{
+    width: 350px;
+}
+.input{
+    width: 95%;
+    height: 22px;
+    border: 1px gray solid;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-bottom: 2px;
+    background-color: rgba(100,100,100,.7);
+    color: white;
+    border: none;
+}
+.botonIngresar{
+    width: 100%;
+    height: 22px;
+    border-radius: 10px;
+    background-color: red;
+    border: none;
+    color: white;
+}
