@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    background: #64ffda;
+}
+.container{
+    width: 150px;
+    height: 500px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px blueviolet dotted;
+}
+.pelota{
+    background: radial-gradient(circle at 40px 40px, #e040fb, #000);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: absolute;
+    left: 15px;
+    bottom: 380px;
+    animation: bounce 3s infinite linear;
+    z-index: 10;
+}
+@keyframes bounce {
+    0%{
+        bottom: 380px;
+    }
+    50%{
+        bottom: 80px;
+    }
+    100%{
+        bottom: 380px;
+    }
+    45%{
+        transform: scale(1,1);
+    }
+    50%{
+        transform: scale(1.2,0.7);
+    }
+    55%{
+        transform: scale(1,1);
+    }
+}
+.sombra{
+    background-color: #000;
+    width: 70px;
+    height: 20px;
+    position: absolute;
+    left: 40px;
+    bottom: 90px;
+    border-radius: 50%;
+    animation: sombra 3s infinite linear;
+}
+@keyframes sombra {
+    0%{
+        opacity: .1;
+        transform: scale(2,1);
+    }
+    50%{
+        opacity: .6;
+        transform: scale(1,1);
+    }
+    100%{
+        opacity: .1;
+        transform: scale(2,1);
+    }
+}
+.pelota::after{
+    content: "";
+    background: radial-gradient(circle at 10px 0, #fff, rgba(255,255,255,0) 58%);
+    width: 60px;
+    height: 40px;
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    border-radius: 50%;
+}
