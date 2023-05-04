@@ -1,5 +1,11 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
+.heroe{
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px var(--bs-border-color-translucent) solid;
+  border-radius: 5px;
+}
