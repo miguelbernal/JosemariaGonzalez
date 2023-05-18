@@ -91,3 +91,42 @@ switch (dia) {
         break;
 }
 console.log('Continuando con el programa...')
+// Ciclos
+// Automatico
+// For Para
+//   inicializacion
+//             condicion
+//                     incremento
+for (let i = 1; i <= 10; i = i + 2) {
+    console.log(i)
+}
+console.log('Continuando con el programa despues del for...')
+// while
+let i = 1
+while (i <= 10) {
+    console.log('while ' + i)
+    i = i + 2
+}
+console.log('Continuando con el programa despues del while...')
+// do while
+i = 1
+do {
+    console.log('do while ' + i)
+    i++
+} while (i <= 15)
+console.log('Continuando con el programa despues del do while...')
+// arrays - vectores
+//  indices ->   0        1      2      3
+let alumnos = ["Jose","Alvaro","Ana","Cesar"] // -> length = 4
+let notas = [4,3,2,1]
+console.log(alumnos)
+console.log(notas)
+// For each
+alumnos.forEach(alumno => {
+    console.log(alumno)
+});
+// for
+for (let i = 0; i < alumnos.length; i++) {
+    console.log(alumnos[i] + " quitó " + notas[i])
+}
+
