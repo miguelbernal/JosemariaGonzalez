@@ -129,4 +129,33 @@ alumnos.forEach(alumno => {
 for (let i = 0; i < alumnos.length; i++) {
     console.log(alumnos[i] + " quitó " + notas[i])
 }
+// Objetos
+let perro = {
+    raza: "caniche",
+    tamanio: "pequeño",
+    edad: 2,
+    color: "blanco",
+    ladrar: function(ladrido, ladrido2){
+        console.log(ladrido,ladrido2)
+    }
+}
+console.log(perro)
+console.log(perro.raza)
+perro.ladrar('Guauuuuu','Gua Gua')
 
+let persona1 = {
+    nombre: "Ana",
+    apellido: "Gonzalez"
+}
+
+let persona2 = {
+    nombre: "Jose",
+    apellido: "Ramirez"
+}
+
+let personas = [persona1, persona2]
+console.log(personas)
+
+personas.forEach(persona => {
+    console.log(persona.nombre + " " + persona.apellido)
+});
