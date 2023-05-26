@@ -159,3 +159,59 @@ console.log(personas)
 personas.forEach(persona => {
     console.log(persona.nombre + " " + persona.apellido)
 });
+
+// Funciones
+// function
+//       nombre de la funcion
+//                 parametros
+console.log('*** funcion diaLetras ***')
+function diaLetras(diaNumero){
+    if (diaNumero === 1){
+        return 'Domingo'
+    } else if (diaNumero === 2){
+        return 'Lunes'
+    } else if (diaNumero === 3){
+        return 'Martes'
+    } else if (diaNumero === 4){
+        return 'Miercoles'
+    } else if (diaNumero === 5){
+        return 'Jueves'
+    } else if (diaNumero === 6){
+        return 'Viernes'
+    } else if (diaNumero === 7){
+        return 'Sábado'
+    } else {
+        return 'Dia erroneo'
+    }
+}
+
+console.log(diaLetras(1))
+console.log(diaLetras(3))
+console.log(diaLetras(5))
+console.log(diaLetras(21))
+
+// Arrow function -> Funciones de flecha
+const diaLetrasArrowFunction = (diaNumero) => {
+    if (diaNumero === 1){
+        return 'Domingo'
+    } else if (diaNumero === 2){
+        return 'Lunes'
+    } else if (diaNumero === 3){
+        return 'Martes'
+    } else if (diaNumero === 4){
+        return 'Miercoles'
+    } else if (diaNumero === 5){
+        return 'Jueves'
+    } else if (diaNumero === 6){
+        return 'Viernes'
+    } else if (diaNumero === 7){
+        return 'Sábado'
+    } else {
+        return 'Dia erroneo'
+    }
+}
+
+console.log('Arrow Function')
+console.log(diaLetrasArrowFunction(2))
+console.log(diaLetrasArrowFunction(7))
+console.log(diaLetrasArrowFunction(22))
