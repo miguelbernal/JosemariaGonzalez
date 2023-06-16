@@ -7,3 +7,4 @@ express --view=ejs myapp
 cd myapp
 npm install
 code .
+npm run start
