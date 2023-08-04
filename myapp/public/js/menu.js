@@ -1,6 +1,6 @@
 let id_usuario = 0;
 
-//buscar_permisos();
+buscar_permisos();
 
 document.getElementById('menu-boton').addEventListener('click', function () {
     const elemento = document.getElementsByClassName('menu-admin')[0];
