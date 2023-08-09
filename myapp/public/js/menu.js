@@ -59,7 +59,7 @@ function generar_menu(permisos) {
             nav += `<li><span class="caret caret-down">${permiso.nombre_submenu}</span>
                   <ul class="nested active">`
         }
-        nav += `<li class="form" onclick="cargar_formulario('panel-lista','${permiso.url}','ocultar_busqueda()')">${permiso.nombre_formulario}</li>`
+        nav += `<li class="form" onclick="cargar_formulario('panel-formulario','${permiso.url}','ocultar_busqueda()')">${permiso.nombre_formulario}</li>`
         modulo_anterior = permiso.id_modulo
         submenu_anterior = permiso.id_submenu
         console.log(modulo_anterior, submenu_anterior)
