@@ -101,7 +101,7 @@ function desproteger_campos(){
 // PETICIONES AL SERVIDOR
 async function buscar_roles(){
     const buscar = document.getElementById('buscar').value    
-    let url = `api/roles/paginar?pag=${pag}&buscar=${buscar}`;
+    let url = `api/v1/roles/paginar?pag=${pag}&buscar=${buscar}`;
     var parametros = {
         method: 'GET',
         headers: {
@@ -144,7 +144,7 @@ async function buscar_roles(){
 
 
 async function guardar_agregar(){
-    let url = '/api/roles';
+    let url = '/api/v1/roles';
     let cnombre = fnombre.value;
 
     var data = {
@@ -170,7 +170,7 @@ async function guardar_agregar(){
 }
 
 async function guardar_modificar(){
-    let url = `/api/roles/${fid_rol.value}`;
+    let url = `/api/v1/roles/${fid_rol.value}`;
 
     let cnombre = fnombre.value;
 
@@ -195,7 +195,7 @@ async function guardar_modificar(){
 }
 
 async function guardar_eliminar(){
-    let url = `/api/roles/${id_rol_eliminar}`;
+    let url = `/api/v1/roles/${id_rol_eliminar}`;
 
     var parametros = {
         method: 'DELETE',

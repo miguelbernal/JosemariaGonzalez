@@ -57,6 +57,41 @@ function mensaje(texto, funcion){
   })
 }
 
+function mensaje_confirmar(texto, texto_boton, funcion) {
+    const modal = `
+    <div id="myModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje del Sistema</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>${texto}</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="mensaje-eliminar" type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">${texto_boton}</button>
+                    <button id="mensaje-cancelar" type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `
+    document.querySelector("#mensaje").innerHTML = modal;
+    let options = {
+
+    };
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+    myModal.show();
+    const mensaje_eliminar = document.querySelector("#mensaje-eliminar");
+    const mensaje_cancelar = document.querySelector("#mensaje-cancelar");
+    mensaje_cancelar.focus();
+    mensaje_eliminar.addEventListener('click', function () {
+        eval(funcion);
+        document.querySelector("#mensaje").innerHTML = '';
+    });
+}
+
 async function cargar_formulario(div, url, funcion) {
     const response = await fetch(url);
     const div_link = "#" + div + " link";
@@ -84,6 +119,11 @@ async function cargar_formulario(div, url, funcion) {
         });
         eval(funcion);
     }
+}
+
+function salir_formulario(){
+    document.getElementById('panel-formulario').innerHTML = ''
+    mostrar_nombre_formulario("Menú principal");
 }
 
 function ocultar_formulario() {
