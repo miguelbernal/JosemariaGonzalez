@@ -1,11 +1,11 @@
-mostrar_nombre_formulario("Módulos");
+mostrar_nombre_formulario("Submenus");
 
 // MANEJO DEL FORMULARIO
-var fid_modulo = document.getElementById('id_modulo')
+var fid_submenu = document.getElementById('id_submenu')
 var fnombre = document.getElementById('nombre')
 var boton_guardar = document.getElementById('boton-guardar')
 var pag = 1
-var id_modulo_eliminar = 0
+var id_submenu_eliminar = 0
 
 inicializar_formulario()
 
@@ -27,12 +27,11 @@ function agregar_linea(){
 
 function guardar_linea(){
     if(validar_formulario()){
-        if(fid_modulo.value == 0){
+        if(fid_submenu.value == 0){
             guardar_agregar()
         } else {
             guardar_modificar()
         }
-        
     }
 }
 
@@ -46,7 +45,7 @@ function validar_formulario(){
 }
 
 function limpiar_campos(){
-    fid_modulo.value = 0
+    fid_submenu.value = 0
     fnombre.value = ""
 }
 
@@ -56,9 +55,9 @@ function consultar_linea(xthis){
     document.getElementById('panel-formulario-datos').style.display = 'block'
     document.getElementById('panel-tabla-datos').style.display = 'none'
     const tds = xthis.parentElement.parentElement.children
-    const tid_modulo = tds[0].innerText
+    const tid_submenu = tds[0].innerText
     const tnombre = tds[1].innerText
-    fid_modulo.value = tid_modulo
+    fid_submenu.value = tid_submenu
     fnombre.value = tnombre
     focus('#nombre')
 }
@@ -69,16 +68,16 @@ function editar_linea(xthis){
     document.getElementById('panel-formulario-datos').style.display = 'block'
     document.getElementById('panel-tabla-datos').style.display = 'none'
     const tds = xthis.parentElement.parentElement.children
-    const tid_modulo = tds[0].innerText
+    const tid_submenu = tds[0].innerText
     const tnombre = tds[1].innerText
-    fid_modulo.value = tid_modulo
+    fid_submenu.value = tid_submenu
     fnombre.value = tnombre
     focus('#nombre')
 }
 
 function eliminar_linea(xthis){
     const tds = xthis.parentElement.parentElement.children
-    id_modulo_eliminar = parseInt(tds[0].innerText)
+    id_submenu_eliminar = parseInt(tds[0].innerText)
     mensaje_confirmar('¿Está seguro de anular este registro?','Eliminar','guardar_eliminar()')
 }
 
@@ -101,7 +100,7 @@ function desproteger_campos(){
 // PETICIONES AL SERVIDOR
 async function buscar_roles(){
     const buscar = document.getElementById('buscar').value    
-    let url = `api/v1/modulos/paginar?pag=${pag}&buscar=${buscar}`;
+    let url = `api/v1/submenus/paginar?pag=${pag}&buscar=${buscar}`;
     var parametros = {
         method: 'GET',
         headers: {
@@ -113,7 +112,7 @@ async function buscar_roles(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
-    const tbody = document.getElementById('tbody-datos-modulos');
+    const tbody = document.getElementById('tbody-datos-submenus');
     tbody.innerText = '';
     let lineas = '';
     if (json.status === 200) {
@@ -144,7 +143,7 @@ async function buscar_roles(){
 
 
 async function guardar_agregar(){
-    let url = '/api/v1/modulos';
+    let url = '/api/v1/submenus';
     let cnombre = fnombre.value;
 
     var data = {
@@ -170,7 +169,7 @@ async function guardar_agregar(){
 }
 
 async function guardar_modificar(){
-    let url = `/api/v1/modulos/${fid_modulo.value}`;
+    let url = `/api/v1/submenus/${fid_submenu.value}`;
 
     let cnombre = fnombre.value;
 
@@ -195,7 +194,7 @@ async function guardar_modificar(){
 }
 
 async function guardar_eliminar(){
-    let url = `/api/v1/modulos/${id_modulo_eliminar}`;
+    let url = `/api/v1/submenus/${id_submenu_eliminar}`;
 
     var parametros = {
         method: 'DELETE',
