@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="./frm/configuraciones/archivos/usuarios/index.css">
+
+<div class="card">
+    <div class="card-body">
+        <div id="panel-formulario-datos" class="alert alert-warning" role="alert" style="display: none;">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Id
+                        </span>
+                        <input id="id_usuario" name="id_usuario" type="text" class="form-control" placeholder="Id" autocomplete="off" readonly>
+                    </div>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Nombre
+                        </span>
+                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" autocomplete="off">
+                    </div>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Usuario
+                        </span>
+                        <input id="usuario" name="usuario" type="text" class="form-control" placeholder="Usuario" autocomplete="off">
+                    </div>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Clave
+                        </span>
+                        <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" autocomplete="off">
+                    </div>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Rol
+                        </span>
+                        <input id="id_rol" name="id_rol" type="text" class="form-control" placeholder="Rol" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" id='boton-guardar' class="btn btn-primary btn-sm" onclick='guardar_linea()'>
+                        <i class="fas fa-plus"></i> Agregar
+                    </button>
+                    <button type="button" id='boton-cancelar' class="btn btn-secondary btn-sm" onclick='cancelar_linea()'>
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </div>
+            <div id="panel-formulario-mensaje" class="alert alert-danger mt-2 text-center d-none" role="alert"></div>
+        </div>
+        <div id="panel-tabla-datos">
+            <div class="input-group mb-1">
+                <span class="input-group-text texto-campo">
+                    Buscar
+                </span>
+                <input id="buscar" name="buscar" type="text" class="form-control" placeholder="Buscar texto ...">
+                <span class="input-group-append">
+                    <button id="boton-buscar" class="btn btn-outline-secondary" type="button" onclick="buscar_usuarios()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <div class="table-resposive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Contraseña</th>
+                            <th>Rol</th>
+                            <th class="text-center" style="width: 150px;">
+                                <button id='boton-agregar-linea' class="btn btn-info btn-sm"
+                                    onclick='agregar_linea()'>
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-datos-usuarios">
+
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          <li class="page-item" onclick="anterior('buscar_usuarios()')"><a class="page-link" href="#">Anterior</a></li>
+                          <li class="page-item" onclick="siguiente('buscar_usuarios()')"><a class="page-link" href="#">Siguiente</a></li>
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" id='boton-salir' class="btn btn-danger btn-sm" onclick='salir_formulario()''>
+            <i class="fas fa-sign-out-alt"></i> Salir
+        </button>
+    </div>
+</div>
+
+<script src="./frm/configuraciones/archivos/usuarios/index.js"></script>

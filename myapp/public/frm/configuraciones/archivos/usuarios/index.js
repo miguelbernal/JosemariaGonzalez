@@ -1,11 +1,11 @@
-mostrar_nombre_formulario("Submenus");
+mostrar_nombre_formulario("Usuarios");
 
 // MANEJO DEL FORMULARIO
-var fid_submenu = document.getElementById('id_submenu')
+var fid_usuario = document.getElementById('id_usuario')
 var fnombre = document.getElementById('nombre')
 var boton_guardar = document.getElementById('boton-guardar')
 var pag = 1
-var id_submenu_eliminar = 0
+var id_usuario_eliminar = 0
 
 inicializar_formulario()
 
@@ -13,7 +13,7 @@ function inicializar_formulario(){
     focus('#buscar')
     siguiente_campo('#nombre','#boton-guardar',true)
     siguiente_campo('#buscar','#boton-buscar',false)
-    buscar_submenus()
+    buscar_roles()
 }
 
 function agregar_linea(){
@@ -27,11 +27,12 @@ function agregar_linea(){
 
 function guardar_linea(){
     if(validar_formulario()){
-        if(fid_submenu.value == 0){
+        if(fid_usuario.value == 0){
             guardar_agregar()
         } else {
             guardar_modificar()
         }
+        
     }
 }
 
@@ -45,7 +46,7 @@ function validar_formulario(){
 }
 
 function limpiar_campos(){
-    fid_submenu.value = 0
+    fid_usuario.value = 0
     fnombre.value = ""
 }
 
@@ -55,9 +56,9 @@ function consultar_linea(xthis){
     document.getElementById('panel-formulario-datos').style.display = 'block'
     document.getElementById('panel-tabla-datos').style.display = 'none'
     const tds = xthis.parentElement.parentElement.children
-    const tid_submenu = tds[0].innerText
+    const tid_usuario = tds[0].innerText
     const tnombre = tds[1].innerText
-    fid_submenu.value = tid_submenu
+    fid_usuario.value = tid_usuario
     fnombre.value = tnombre
     focus('#nombre')
 }
@@ -68,16 +69,16 @@ function editar_linea(xthis){
     document.getElementById('panel-formulario-datos').style.display = 'block'
     document.getElementById('panel-tabla-datos').style.display = 'none'
     const tds = xthis.parentElement.parentElement.children
-    const tid_submenu = tds[0].innerText
+    const tid_usuario = tds[0].innerText
     const tnombre = tds[1].innerText
-    fid_submenu.value = tid_submenu
+    fid_usuario.value = tid_usuario
     fnombre.value = tnombre
     focus('#nombre')
 }
 
 function eliminar_linea(xthis){
     const tds = xthis.parentElement.parentElement.children
-    id_submenu_eliminar = parseInt(tds[0].innerText)
+    id_usuario_eliminar = parseInt(tds[0].innerText)
     mensaje_confirmar('¿Está seguro de anular este registro?','Eliminar','guardar_eliminar()')
 }
 
@@ -98,9 +99,9 @@ function desproteger_campos(){
 }
 
 // PETICIONES AL SERVIDOR
-async function buscar_submenus(){
+async function buscar_roles(){
     const buscar = document.getElementById('buscar').value    
-    let url = `api/v1/submenus/paginar?pag=${pag}&buscar=${buscar}`;
+    let url = `api/v1/usuarios/paginar?pag=${pag}&buscar=${buscar}`;
     var parametros = {
         method: 'GET',
         headers: {
@@ -112,7 +113,7 @@ async function buscar_submenus(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
-    const tbody = document.getElementById('tbody-datos-submenus');
+    const tbody = document.getElementById('tbody-datos-usuarios');
     tbody.innerText = '';
     let lineas = '';
     if (json.status === 200) {
@@ -143,7 +144,7 @@ async function buscar_submenus(){
 
 
 async function guardar_agregar(){
-    let url = '/api/v1/submenus';
+    let url = '/api/v1/usuarios';
     let cnombre = fnombre.value;
 
     var data = {
@@ -162,14 +163,14 @@ async function guardar_agregar(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
-    buscar_submenus();
+    buscar_roles();
     agregar_linea();
     limpiar_campos()
     focus('#nombre')
 }
 
 async function guardar_modificar(){
-    let url = `/api/v1/submenus/${fid_submenu.value}`;
+    let url = `/api/v1/usuarios/${fid_usuario.value}`;
 
     let cnombre = fnombre.value;
 
@@ -190,11 +191,11 @@ async function guardar_modificar(){
     var datos = await fetch(url, parametros)
     const json = await datos.json();
     cancelar_linea()
-    buscar_submenus();
+    buscar_roles();
 }
 
 async function guardar_eliminar(){
-    let url = `/api/v1/submenus/${id_submenu_eliminar}`;
+    let url = `/api/v1/usuarios/${id_usuario_eliminar}`;
 
     var parametros = {
         method: 'DELETE',
@@ -207,5 +208,5 @@ async function guardar_eliminar(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
-    buscar_submenus();
+    buscar_roles();
 }
