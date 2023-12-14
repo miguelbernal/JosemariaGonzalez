@@ -3,6 +3,9 @@ mostrar_nombre_formulario("Usuarios");
 // MANEJO DEL FORMULARIO
 var fid_usuario = document.getElementById('id_usuario')
 var fnombre = document.getElementById('nombre')
+var fusuario = document.getElementById('usuario')
+var fclave = document.getElementById('clave')
+var fid_rol = document.getElementById('id_rol')
 var boton_guardar = document.getElementById('boton-guardar')
 var pag = 1
 var id_usuario_eliminar = 0
@@ -11,7 +14,10 @@ inicializar_formulario()
 
 function inicializar_formulario(){
     focus('#buscar')
-    siguiente_campo('#nombre','#boton-guardar',true)
+    siguiente_campo('#nombre','#usuario',true)
+    siguiente_campo('#usuario','#clave',true)
+    siguiente_campo('#clave','#id_rol',true)
+    siguiente_campo('#id_rol','#boton-guardar',true)
     siguiente_campo('#buscar','#boton-buscar',false)
     buscar_roles()
 }
@@ -41,6 +47,15 @@ function validar_formulario(){
     if(fnombre.value.trim() === ''){
         mensaje('Nombre vacio.','focus("#nombre")')
         ok = false
+    } else if(fusuario.value.trim() === ''){
+        mensaje('Usuario vacio.','focus("#usuario")')
+        ok = false
+    } else if(fclave.value.trim() === ''){
+        mensaje('Clave vacia.','focus("#clave")')
+        ok = false
+    } else if(fid_rol.value.trim() === ''){
+        mensaje('Rol no existe.','focus("#id_rol")')
+        ok = false
     }
     return ok
 }
@@ -48,6 +63,9 @@ function validar_formulario(){
 function limpiar_campos(){
     fid_usuario.value = 0
     fnombre.value = ""
+    fusuario.value = ""
+    fclave.value = ""
+    fid_rol.value = ""
 }
 
 function consultar_linea(xthis){
@@ -58,8 +76,14 @@ function consultar_linea(xthis){
     const tds = xthis.parentElement.parentElement.children
     const tid_usuario = tds[0].innerText
     const tnombre = tds[1].innerText
+    const tusuario = tds[2].innerText
+    const tclave = tds[3].innerText
+    const tid_rol = tds[4].innerText
     fid_usuario.value = tid_usuario
     fnombre.value = tnombre
+    fusuario.value = tusuario
+    fclave.value = tclave
+    fid_rol.value = tid_rol
     focus('#nombre')
 }
 
@@ -71,8 +95,14 @@ function editar_linea(xthis){
     const tds = xthis.parentElement.parentElement.children
     const tid_usuario = tds[0].innerText
     const tnombre = tds[1].innerText
+    const tusuario = tds[2].innerText
+    const tclave = tds[3].innerText
+    const tid_rol = tds[4].innerText
     fid_usuario.value = tid_usuario
     fnombre.value = tnombre
+    fusuario.value = tusuario
+    fclave.value = tclave
+    fid_rol.value = tid_rol
     focus('#nombre')
 }
 
@@ -90,11 +120,17 @@ function cancelar_linea(){
 
 function proteger_campos(){
     fnombre.disabled = true
+    fusuario.disabled = true
+    fclave.disabled = true
+    fid_rol.disabled = true
     boton_guardar.style.display = 'none'
 }
 
 function desproteger_campos(){
     fnombre.disabled = false
+    fusuario.disabled = false
+    fclave.disabled = false
+    fid_rol.disabled = false
     boton_guardar.style.display = 'inline-block'
 }
 
@@ -121,6 +157,9 @@ async function buscar_roles(){
             let linea = `<tr>
                             <td>${json.datos[item].id}</td>
                             <td>${json.datos[item].nombre}</td>
+                            <td>${json.datos[item].usuario}</td>
+                            <td>${json.datos[item].clave}</td>
+                            <td>${json.datos[item].id_rol}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-secondary btn-sm" onclick='consultar_linea(this)'>
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -146,9 +185,15 @@ async function buscar_roles(){
 async function guardar_agregar(){
     let url = '/api/v1/usuarios';
     let cnombre = fnombre.value;
+    let cusuario = fusuario.value;
+    let cclave = fclave.value;
+    let cid_rol = fid_rol.value;
 
     var data = {
         nombre: cnombre,
+        usuario: cusuario,
+        clave: cclave,
+        id_rol: cid_rol,
     };
 
     var parametros = {
@@ -173,9 +218,15 @@ async function guardar_modificar(){
     let url = `/api/v1/usuarios/${fid_usuario.value}`;
 
     let cnombre = fnombre.value;
+    let cusuario = fusuario.value;
+    let cclave = fclave.value;
+    let cid_rol = fid_rol.value;
 
     var data = {
         nombre: cnombre,
+        usuario: cusuario,
+        clave: cclave,
+        id_rol: cid_rol,
     };
 
     var parametros = {
