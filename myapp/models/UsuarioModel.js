@@ -14,10 +14,11 @@ module.exports = class UsuarioModel {
     static getPage = async (pag, buscar) => {
         const limit = 10
         const offset = (pag - 1) * limit
-        const sql = `SELECT id, nombre, usuario, clave, id_rol
-                            FROM usuarios
-                            WHERE nombre LIKE ?
-                            ORDER BY id DESC
+        const sql = `SELECT u.id, u.nombre, u.usuario, u.clave, u.id_rol, r.nombre nombre_rol
+                            FROM usuarios u
+                            LEFT JOIN roles r ON u.id_rol = r.id
+                            WHERE u.nombre LIKE ?
+                            ORDER BY u.id DESC
                             LIMIT ? OFFSET ?`
         buscar = `%${buscar}%`
         return await pool.query(sql, [buscar, limit, offset])
@@ -25,8 +26,9 @@ module.exports = class UsuarioModel {
 
     // Get Usuario
     static getOne = async (id_usuario) => {
-        const sql = `SELECT id, nombre, usuario, clave, id_rol
-                            FROM usuarios
+        const sql = `SELECT u.id, u.nombre, u.usuario, u.clave, u.id_rol, r.nombre nombre_rol
+                            FROM usuarios u
+                            LEFT JOIN roles r ON u.id_rol = r.id
                             WHERE id = ?`
         return await pool.query(sql, [id_usuario])
     };

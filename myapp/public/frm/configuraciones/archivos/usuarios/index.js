@@ -160,6 +160,7 @@ async function buscar_roles(){
                             <td>${json.datos[item].usuario}</td>
                             <td>${json.datos[item].clave}</td>
                             <td>${json.datos[item].id_rol}</td>
+                            <td>${json.datos[item].nombre_rol}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-secondary btn-sm" onclick='consultar_linea(this)'>
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -176,7 +177,7 @@ async function buscar_roles(){
         }
     }
     if(lineas === ''){
-        lineas = `<tr><td colspan="3" class="text-center">No existen registros ...</td></tr>`;
+        lineas = `<tr><td colspan="7" class="text-center">No existen registros ...</td></tr>`;
     }
     tbody.innerHTML = lineas;
 }
