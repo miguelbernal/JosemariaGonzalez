@@ -29,11 +29,25 @@
                         </span>
                         <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" autocomplete="off">
                     </div>
-                    <div class="input-group mb-1">
-                        <span class="input-group-text texto-campo">
-                            Rol
-                        </span>
-                        <input id="id_rol" name="id_rol" type="text" class="form-control" placeholder="Rol" autocomplete="off">
+                    <div class="row mb-1">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text texto-campo">
+                                    Rol
+                                </span>
+                                <input id="id_rol" name="id_rol" type="text" class="form-control" placeholder="Id rol" autocomplete="off" onchange="buscar_roles_id()">
+                                <span class="input-group-append">
+                                    <button id="boton-buscar-modulo" class="btn btn-outline-secondary" type="button" onclick="seleccionar_roles()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input id="nombre_rol" name="nombre_rol" type="text" class="form-control" placeholder="Nombre rol" autocomplete="off" readonly>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
