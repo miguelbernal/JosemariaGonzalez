@@ -19,7 +19,7 @@ function inicializar_formulario(){
     siguiente_campo('#clave','#id_rol',true)
     siguiente_campo('#id_rol','#boton-guardar',true)
     siguiente_campo('#buscar','#boton-buscar',false)
-    buscar_roles()
+    buscar_usuarios()
 }
 
 function agregar_linea(){
@@ -135,7 +135,7 @@ function desproteger_campos(){
 }
 
 // PETICIONES AL SERVIDOR
-async function buscar_roles(){
+async function buscar_usuarios(){
     const buscar = document.getElementById('buscar').value    
     let url = `api/v1/usuarios/paginar?pag=${pag}&buscar=${buscar}`;
     var parametros = {
