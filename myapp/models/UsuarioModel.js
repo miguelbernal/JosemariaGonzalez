@@ -35,7 +35,7 @@ module.exports = class UsuarioModel {
 
     // Agregar
     static add = async (nombre, usuario, clave, id_rol) => {
-        const sql = `INSERT INTO modulos(nombre, usuario, clave, id_rol) VALUES(?,?,?,?)`
+        const sql = `INSERT INTO usuarios(nombre, usuario, clave, id_rol) VALUES(?,?,?,?)`
         return await pool.query(sql, [nombre,usuario,clave,id_rol])
     };
 

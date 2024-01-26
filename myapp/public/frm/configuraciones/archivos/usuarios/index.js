@@ -209,7 +209,7 @@ async function guardar_agregar(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
-    buscar_roles();
+    buscar_usuarios();
     agregar_linea();
     limpiar_campos()
     focus('#nombre')
@@ -243,7 +243,7 @@ async function guardar_modificar(){
     var datos = await fetch(url, parametros)
     const json = await datos.json();
     cancelar_linea()
-    buscar_roles();
+    buscar_usuarios();
 }
 
 async function guardar_eliminar(){
@@ -260,7 +260,7 @@ async function guardar_eliminar(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
-    buscar_roles();
+    buscar_usuarios();
 }
 
 // Roles
@@ -287,7 +287,7 @@ function salir_seleccionar_roles(){
 
 async function buscar_roles(){
     const buscar = document.getElementById('buscar_rol').value    
-    let url = `api/roles/paginar?pag=${pag}&buscar=${buscar}`;
+    let url = `api/v1/roles/paginar?pag=${pag}&buscar=${buscar}`;
     var parametros = {
         method: 'GET',
         headers: {
@@ -324,7 +324,7 @@ async function buscar_roles(){
 
 async function buscar_roles_id(){
     const id = fid_rol.value
-    let url = `api/roles/${id}`;
+    let url = `api/v1/roles/${id}`;
 
     var parametros = {
         method: 'GET',
