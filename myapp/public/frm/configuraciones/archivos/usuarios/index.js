@@ -6,6 +6,7 @@ var fnombre = document.getElementById('nombre')
 var fusuario = document.getElementById('usuario')
 var fclave = document.getElementById('clave')
 var fid_rol = document.getElementById('id_rol')
+var fnombre_rol = document.getElementById('nombre_rol')
 var boton_guardar = document.getElementById('boton-guardar')
 var pag = 1
 var id_usuario_eliminar = 0
@@ -337,6 +338,7 @@ async function buscar_roles_id(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
+    console.log(json)
     if(json.datos.length > 0){
         fnombre_rol.value = json.datos[0].nombre
     } else {

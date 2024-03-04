@@ -17,4 +17,17 @@ module.exports = class PermisoModel {
         return await pool.query(sql, [id_rol])
     };
 
+    // Agregar
+    static add = async (id_rol, id_formulario, habilitar, consultar, agregar, modificar, eliminar) => {
+        const sql = `INSERT INTO permisos(id_rol, id_formulario, habilitar, consultar, agregar, modificar, eliminar) 
+                                   VALUES(?,?,?,?,?,?,?)`
+        return await pool.query(sql, [id_rol, id_formulario, habilitar, consultar, agregar, modificar, eliminar])
+    };
+
+    // Modificar
+    static update = async (id_rol, id_formulario, habilitar, consultar, agregar, modificar, eliminar, id_permiso) => {
+        const sql = `UPDATE permisos SET id_rol = ?, id_formulario = ?, habilitar = ?, consultar = ?, agregar = ?, modificar = ?, eliminar = ? WHERE id = ?`
+        return await pool.query(sql, [id_rol, id_formulario, habilitar, consultar, agregar, modificar, eliminar, id_permiso])
+    };
+
 }
