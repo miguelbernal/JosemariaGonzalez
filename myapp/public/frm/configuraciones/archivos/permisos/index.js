@@ -1,4 +1,4 @@
-mostrar_nombre_programa("Pemisos");
+mostrar_nombre_formulario("Pemisos");
 
 inicializar_formulario()
 
