@@ -74,46 +74,6 @@ async function buscar_formularios_permisos(){
     tbody.innerHTML = lineas;
 }
 
-async function buscar_rol() {
-    let buscar = document.getElementById('rol').value;
-    let url = `/api/v1/roles?buscar=${buscar}`;
-
-    var parametros = {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
-
-    var datos = await fetch(url, parametros)
-    const json = await datos.json();
-    const tbody = document.getElementById('tbody-datos-elegir-rol');
-    tbody.innerText = '';
-    let lineas = '';
-    if (json.status === 200) {
-        for (let item in json.datos) {
-            let linea = `<tr data-id_rol=${json.datos[item].id} onclick="elegir_rol(this)">
-                            <td>${json.datos[item].nombre}</td>
-                         </tr>`;
-            lineas += linea;
-        }
-    }
-    if (lineas === '') {
-        lineas = `<tr><td class="text-center">No existen registros ...</td></tr>`;
-    }
-    tbody.innerHTML = lineas;
-}
-
-function elegir_rol(xthis) {
-    id_rol = parseInt(xthis.getAttribute('data-id_rol'));
-    const tds = xthis.children;
-    const nombre = tds[0].innerText;
-    document.getElementById('rol').value = nombre;
-    salir_buscador('modal-buscador-rol');
-    buscar_formularios_permisos();
-}
-
 async function guardar_permiso_agregar(xid_formulario, habilitar, consultar, agregar, modificar, eliminar){
     let url = '/api/v1/permisos';
 
@@ -164,4 +124,88 @@ async function guardar_permiso_modificar(xid_permiso, xid_formulario, habilitar,
     var datos = await fetch(url, parametros)
     const json = await datos.json();
     buscar_formularios_permisos();
+}
+
+// Roles
+function seleccionar_roles(){
+    document.getElementById('panel-formulario').style.display = 'none'
+    document.getElementById('panel-busqueda').style.display = 'block'
+    cargar_formulario('panel-busqueda','./frm/configuraciones/archivos/usuarios/buscar_rol.html','buscar_roles(); focus("#buscar_rol");');
+}
+
+function seleccionar_rol_linea(xthis){
+    salir_seleccionar_roles()
+    const tds = xthis.parentElement.parentElement.children
+    const tid_rol = tds[0].innerText
+    const tnombre_rol = tds[1].innerText
+    fid_rol.value = tid_rol
+    fnombre_rol.value = tnombre_rol
+}
+
+function salir_seleccionar_roles(){
+    document.getElementById('panel-busqueda').style.display = 'none'
+    document.getElementById('panel-formulario').style.display = 'block'
+    focus('#id_rol')
+}
+
+async function buscar_roles(){
+    const buscar = document.getElementById('buscar_rol').value    
+    let url = `api/v1/roles/paginar?pag=${pag}&buscar=${buscar}`;
+    var parametros = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem("token")
+        }
+    };
+
+    var datos = await fetch(url, parametros)
+    const json = await datos.json();
+    const tbody = document.getElementById('tbody-datos-roles');
+    tbody.innerText = '';
+    let lineas = '';
+    if (json.status === 200) {
+        for (let item in json.datos) {
+            let linea = `<tr>
+                            <td>${json.datos[item].id}</td>
+                            <td>${json.datos[item].nombre}</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-warning btn-sm" onclick='seleccionar_rol_linea(this)'>
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                            </td>
+                        </tr>`;
+             lineas += linea;
+        }
+    }
+    if(lineas === ''){
+        lineas = `<tr><td colspan="3" class="text-center">No existen registros ...</td></tr>`;
+    }
+    tbody.innerHTML = lineas;
+}
+
+async function buscar_roles_id(){
+    const id = fid_rol.value
+    let url = `api/v1/roles/${id}`;
+
+    var parametros = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem("token")
+        }
+    };
+
+    var datos = await fetch(url, parametros)
+    const json = await datos.json();
+    console.log(json)
+    if(json.datos.length > 0){
+        fnombre_rol.value = json.datos[0].nombre
+    } else {
+        fnombre_rol.value = ''
+        mensaje('Rol no existe.','focus("#id_rol")')
+    }
+    
 }
