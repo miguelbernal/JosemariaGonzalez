@@ -1,10 +1,16 @@
 mostrar_nombre_formulario("Pemisos");
 
+var fid_rol = document.getElementById('id_rol')
+var fnombre_rol = document.getElementById('nombre_rol')
+var id_rol = 0
+var pag = 1
+
 inicializar_formulario()
 
 function inicializar_formulario(){
-    focus('#rol')
-    id_rol = 0
+    fid_rol.value = ''
+    fnombre_rol.value = '' 
+    focus('#id_rol')
 }
 
 function guardar_permiso(xthis){
@@ -36,6 +42,7 @@ async function buscar_formularios_permisos(){
 
     var datos = await fetch(url, parametros)
     const json = await datos.json();
+    console.log(json)
     const tbody = document.getElementById('tbody-datos-formularios');
     tbody.innerText = '';
     let lineas = '';
@@ -140,6 +147,8 @@ function seleccionar_rol_linea(xthis){
     const tnombre_rol = tds[1].innerText
     fid_rol.value = tid_rol
     fnombre_rol.value = tnombre_rol
+    id_rol = tid_rol
+    buscar_formularios_permisos()
 }
 
 function salir_seleccionar_roles(){
@@ -186,8 +195,8 @@ async function buscar_roles(){
 }
 
 async function buscar_roles_id(){
-    const id = fid_rol.value
-    let url = `api/v1/roles/${id}`;
+    id_rol = fid_rol.value
+    let url = `api/v1/roles/${id_rol}`;
 
     var parametros = {
         method: 'GET',
@@ -203,6 +212,7 @@ async function buscar_roles_id(){
     console.log(json)
     if(json.datos.length > 0){
         fnombre_rol.value = json.datos[0].nombre
+        buscar_formularios_permisos()
     } else {
         fnombre_rol.value = ''
         mensaje('Rol no existe.','focus("#id_rol")')
