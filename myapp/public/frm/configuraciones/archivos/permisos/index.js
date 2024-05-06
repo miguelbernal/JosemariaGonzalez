@@ -64,7 +64,7 @@ async function buscar_formularios_permisos(){
                           `<input type="checkbox" class="form-check-input" onchange="guardar_permiso(this)" checked>` : 
                           `<input type="checkbox" class="form-check-input" onchange="guardar_permiso(this)">`;
             let linea = `<tr data-id_permiso=${json.datos[item].id_permiso} data-id_formulario=${json.datos[item].id_formulario}>
-                            <td>${json.datos[item].nombre}</td>
+                            <td>${json.datos[item].nombre_formulario}</td>
                             <td>${json.datos[item].nombre_submenu}</td>
                             <td class="text-center">${habilitar}</td>
                             <td class="text-center">${consultar}</td>
