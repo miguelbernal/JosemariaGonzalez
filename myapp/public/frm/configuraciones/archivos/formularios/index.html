@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="./frm/configuraciones/archivos/formularios/index.css">
+
+<div class="card">
+    <div class="card-body">
+        <div id="panel-formulario-datos" class="alert alert-warning" role="alert" style="display: none;">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Id
+                        </span>
+                        <input id="id_usuario" name="id_usuario" type="text" class="form-control" placeholder="Id" autocomplete="off" readonly>
+                    </div>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Nombre
+                        </span>
+                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" autocomplete="off">
+                    </div>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text texto-campo">
+                            Url
+                        </span>
+                        <input id="usuario" name="usuario" type="text" class="form-control" placeholder="Usuario" autocomplete="off">
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text texto-campo">
+                                    Módulo
+                                </span>
+                                <input id="id_modulo" name="id_modulo" type="text" class="form-control" placeholder="Id módulo" autocomplete="off" onchange="buscar_modulos_id()">
+                                <span class="input-group-append">
+                                    <button id="boton-buscar-modulo" class="btn btn-outline-secondary" type="button" onclick="seleccionar_modulos()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input id="nombre_modulo" name="nombre_modulo" type="text" class="form-control" placeholder="Nombre módulo" autocomplete="off" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text texto-campo">
+                                    Submenu
+                                </span>
+                                <input id="id_submenu" name="id_submenu" type="text" class="form-control" placeholder="Id submenu" autocomplete="off" onchange="buscar_submenus_id()">
+                                <span class="input-group-append">
+                                    <button id="boton-buscar-submenu" class="btn btn-outline-secondary" type="button" onclick="seleccionar_submenus()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input id="nombre_submenu" name="nombre_submenu" type="text" class="form-control" placeholder="Nombre submenu" autocomplete="off" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" id='boton-guardar' class="btn btn-primary btn-sm" onclick='guardar_linea()'>
+                        <i class="fas fa-plus"></i> Agregar
+                    </button>
+                    <button type="button" id='boton-cancelar' class="btn btn-secondary btn-sm" onclick='cancelar_linea()'>
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </div>
+            <div id="panel-formulario-mensaje" class="alert alert-danger mt-2 text-center d-none" role="alert"></div>
+        </div>
+        <div id="panel-tabla-datos">
+            <div class="input-group mb-1">
+                <span class="input-group-text texto-campo">
+                    Buscar
+                </span>
+                <input id="buscar" name="buscar" type="text" class="form-control" placeholder="Buscar texto ...">
+                <span class="input-group-append">
+                    <button id="boton-buscar" class="btn btn-outline-secondary" type="button" onclick="buscar_formularios()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <div class="table-resposive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Url</th>
+                            <th>Módulo</th>
+                            <th>Nombre</th>
+                            <th>Submenu</th>
+                            <th>Nombre</th>
+                            <th class="text-center" style="width: 150px;">
+                                <button id='boton-agregar-linea' class="btn btn-info btn-sm"
+                                    onclick='agregar_linea()'>
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-datos-formularios">
+
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          <li class="page-item" onclick="anterior('buscar_formularios()')"><a class="page-link" href="#">Anterior</a></li>
+                          <li class="page-item" onclick="siguiente('buscar_formularios()')"><a class="page-link" href="#">Siguiente</a></li>
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" id='boton-salir' class="btn btn-danger btn-sm" onclick='salir_formulario()'>
+            <i class="fas fa-sign-out-alt"></i> Salir
+        </button>
+    </div>
+</div>
+
+<script src="./frm/configuraciones/archivos/formularios/index.js"></script>

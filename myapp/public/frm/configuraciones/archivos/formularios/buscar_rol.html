@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-body">
+      <div class="input-group">
+          <span class="input-group-text texto-campo">
+              Buscar
+          </span>
+          <input id="buscar_rol" name="buscar_rol" type="text" class="form-control"
+              placeholder="Buscar texto ...">
+          <span class="input-group-append">
+              <button id="boton-buscar-rol" class="btn btn-outline-secondary" type="button"
+                  onclick="buscar_roles()">
+                  <i class="fas fa-search"></i>
+              </button>
+          </span>
+      </div>
+      <div class="table-responsive fixed-header buscador">
+          <table class="table table-striped table-hover table-bordered">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th class="text-center" style="width: 100px;">
+                      </th>
+                  </tr>
+              </thead>
+              <tbody id="tbody-datos-roles">
+
+              </tbody>
+          </table>
+      </div>
+      <div class="d-flex justify-content-center">
+          <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                  <li class="page-item" onclick="anterior('buscar_roles()')"><a class="page-link"
+                          href="#">Anterior</a></li>
+                  <li class="page-item" onclick="siguiente('buscar_roles()')"><a class="page-link"
+                          href="#">Siguiente</a></li>
+              </ul>
+          </nav>
+      </div>
+  </div>
+  <div class="card-footer">
+      <button type="button" id='boton-retornar' class="btn btn-danger btn-sm" onclick='salir_seleccionar_roles()'>
+          <i class="fas fa-sign-out-alt"></i> Retornar
+      </button>
+  </div>
+</div>
